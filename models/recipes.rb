@@ -1,3 +1,3 @@
-class Recipes < ActiveRecord::Base
-  validates_presence_of :title
-end
+# class Recipe < ActiveRecord::Base
+#   validates_presence_of :title
+# end
