@@ -1,0 +1,27 @@
+<p>Welcome back, <%= current_user.email %></p>
+
+<p>Let's start cooking!</p>
+
+<form action='/recipesuggestions' method="post">
+	<legend>Main Ingredient</legend>
+	 <select name="Select" placeholder="Select">
+	     <option value = "Chicken">Chicken</option>
+	     <option value = "Seafood">Seafood</option>
+	     <option value = "Beef">Beef</option>
+	     <option value = "Pasta">Pasta</option>
+	     <option value = "Pork">Pork</option>
+	     <option value = "Vegetarian">Vegetarian</option>
+	  </select>
+	
+	<legend>Time to Cook</legend>
+	<select name="" placeholder="Animal Type">
+	     <option value = "10 Minutes">10 Minutes</option>
+	     <option value = "20 Minutes">20 Minutes</option>
+	     <option value = "30 Minutes">30 Minutes</option>
+	     <option value = "40 Minutes">40 Minutes</option>
+	</select>
+
+	<input type="submit">
+
+
+</form>

@@ -8,7 +8,13 @@ require './models/user'
 #require 'rack-flash'
 
 require_relative './models/user'
+# require_relative './models/post'
+# require_relative './models/recipes'
 require_relative './config/environments'
+
+
+#############################################
+# USER AUTHENTICATION 
 
 register Sinatra::SimpleAuthentication
 
@@ -31,11 +37,79 @@ Sinatra::SimpleAuthentication.configure do |c|
 	c.login_successful_message = "Custom Login successful"
 end
 
+#############################################
 
 
+# INDEX ROUTE: LOGIN/SIGN-UP
 get '/' do
 	login_required
-	erb :index
+	erb :main_page
 end
 
-# post ''
+# get '/lists' do
+# 	@ingredient = params[:ingredient]
+# 	@time = params[:time]
+
+# # if @ingredient && @time
+# # 	redirect 'lists/:ingredient/:time'
+
+# 	erb :lists
+# end
+
+# get '/lists' do
+# 	erb :lists
+# end
+
+post '/recipesuggestions' do
+	@main_ingredient = params[:main_ingredient]
+end
+
+
+
+# get '/login' do
+# 	erb :login
+# end
+
+# post '/login' do
+# 	user = User.find_by(email: params[:email])
+# 	if user && user.authenticate(params[:password])
+# 		session[:user_id] = user.id
+# 		redirect('/mainpage')
+# 	else
+# 		@errors << "Invalid email or password."
+# 		erb :login
+# 	end
+# end
+
+# #MAIN PAGE
+# get '/mainpage' do
+# 	erb :main_page
+# end
+
+# get "/users" do
+#   if current_user?
+#     erb :main_page
+#   else
+#     redirect('/session/login')
+# end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
