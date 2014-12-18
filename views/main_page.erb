@@ -1,10 +1,15 @@
-<p>Welcome back, <%= current_user.email %></p>
+
+<h1> Recipe Matcher </h1>
+
+<% @username = current_user.email.split ('@') %>
+<p>Welcome back, <%= @username.first.capitalize%>!</p>
 
 <p>Let's start cooking!</p>
 
-<form action='/recipesuggestions' method="post">
+<p>What ingredient are you starting out with?</p>
+<form action='/recipesuggestions' method="get">
 	<legend>Main Ingredient</legend>
-	 <select name="Select" placeholder="Select">
+	 <select name="main_ingredient" placeholder="select">
 	     <option value = "Chicken">Chicken</option>
 	     <option value = "Seafood">Seafood</option>
 	     <option value = "Beef">Beef</option>
@@ -13,15 +18,17 @@
 	     <option value = "Vegetarian">Vegetarian</option>
 	  </select>
 	
+
+	<p>How much time do you have to cook?</p>
 	<legend>Time to Cook</legend>
-	<select name="" placeholder="Animal Type">
-	     <option value = "10 Minutes">10 Minutes</option>
-	     <option value = "20 Minutes">20 Minutes</option>
-	     <option value = "30 Minutes">30 Minutes</option>
-	     <option value = "40 Minutes">40 Minutes</option>
+	<select name="time_to_cook" placeholder="time_to_cook">
+	     <option value = "20 minutes">20 Minutes</option>
+	     <option value = "30 minutes">30 Minutes</option>
+	     <option value = "40 minutes">40 Minutes</option>
 	</select>
 
 	<input type="submit">
 
-
 </form>
+
+<a href='/make_a_post'>Make a Recipe</a>

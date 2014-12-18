@@ -1,17 +1,17 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
-
+require 'pry'
 
 require 'sinatra/simple-authentication'
-require './models/user'
+
 #require 'rack-flash'
 
 require_relative './models/user'
 # require_relative './models/post'
-# require_relative './models/recipes'
+require_relative './models/recipe'
 require_relative './config/environments'
-
+# binding.pry
 
 #############################################
 # USER AUTHENTICATION 
@@ -46,70 +46,73 @@ get '/' do
 	erb :main_page
 end
 
-# get '/lists' do
-# 	@ingredient = params[:ingredient]
-# 	@time = params[:time]
-
-# # if @ingredient && @time
-# # 	redirect 'lists/:ingredient/:time'
-
-# 	erb :lists
-# end
-
-# get '/lists' do
-# 	erb :lists
-# end
-
-post '/recipesuggestions' do
-	@main_ingredient = params[:main_ingredient]
+get '/main_page' do
+	erb :main_page
 end
 
 
+get '/recipesuggestions' do
+	params.inspect
+	@recipes = Recipe.where(:main_ingredient => params[:main_ingredient], :time_to_cook => params[:time_to_cook])
+	# return @recipes.inspect
+	erb :recipesuggestions
+	# redirect "recipesuggestions/list"
+# 	@main_ingredient = params[:main_ingredient]
+# 	sessions[:main_ingredient] = db id for main ingred (search db for @main_ingredient)
+ end
 
-# get '/login' do
-# 	erb :login
+
+ get '/:id/tasks' do
+ 	@recipe = Recipe.find(params[:id])
+ 	erb :single_ingredient_page
+ end
+
+
+get '/make_a_post' do
+	erb :make_a_post
+end
+
+post '/make_a_post' do
+	@recipe_title = params[:title]
+	@recipe_main_ingredient = params[:main_ingredient]
+	@recipe_time = params[:time_to_cook]
+	@recipe_ingredients = params[:ingredients]
+	@recipe_description= params[:recipe]
+	
+	Recipe.create(title: @recipe_title, time_to_cook: @recipe_time, main_ingredient: @recipe_main_ingredient, ingredients: @recipe_ingredients, recipe: @recipe_description)
+	erb :main_page
+end
+
+##DELETING RECIPES##
+get "/delete/:recipeid" do
+	@recipe_to_delete = Recipe.find(params[:recipeid])
+	#erb :delete
+	@recipe_to_delete.delete
+	redirect('/main_page')
+	#erb :recipesuggestions
+##figure out how to reroute to the "recipe suggestions" page after you delete a recipe
+end
+
+# post "/delete" do 
+# 	erb :recipesuggestions
+	# @recipe_to_delete = Recipe.find(params[:recipe_to_delete_id])
+	# @recipe_to_delete.delete
+	# redirect('/recipesuggestions')
+#end
+
+
+# post '/products/my_swap/edit' do
+#   Recipe.update(
+#     params[:my_swap_id_edit],
+#     product_name: params[:product_name],
+#     description: params[:description],
+#     image: params[:product_image],
+#     price: params[:price],
+#     seller: @current_user.user_name,
+#     quantity: params[:product_quantity],
+#     user_id: @current_user.id
+#   )
 # end
-
-# post '/login' do
-# 	user = User.find_by(email: params[:email])
-# 	if user && user.authenticate(params[:password])
-# 		session[:user_id] = user.id
-# 		redirect('/mainpage')
-# 	else
-# 		@errors << "Invalid email or password."
-# 		erb :login
-# 	end
-# end
-
-# #MAIN PAGE
-# get '/mainpage' do
-# 	erb :main_page
-# end
-
-# get "/users" do
-#   if current_user?
-#     erb :main_page
-#   else
-#     redirect('/session/login')
-# end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

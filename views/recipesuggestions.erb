@@ -1,0 +1,15 @@
+<table>
+	<!-- <tr>
+		<th>Title</th>
+		<th>Ingredients</th>
+		<th>Recipe</th>
+
+	</tr> -->
+
+	<% @recipes.each do |recipe| %>
+		<tr>
+			<td><a href="/<%= recipe.id %>/tasks"><%=recipe.title %> </a></td>
+		
+		</tr>
+	<% end %>
+</table>
