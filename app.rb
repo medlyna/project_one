@@ -56,11 +56,8 @@ get '/recipesuggestions' do
 	@recipes = Recipe.where(:main_ingredient => params[:main_ingredient], :time_to_cook => params[:time_to_cook])
 	# return @recipes.inspect
 	erb :recipesuggestions
-	# redirect "recipesuggestions/list"
-# 	@main_ingredient = params[:main_ingredient]
-# 	sessions[:main_ingredient] = db id for main ingred (search db for @main_ingredient)
+	
  end
-
 
  get '/:id/tasks' do
  	@recipe = Recipe.find(params[:id])
@@ -93,26 +90,11 @@ get "/delete/:recipeid" do
 ##figure out how to reroute to the "recipe suggestions" page after you delete a recipe
 end
 
-# post "/delete" do 
-# 	erb :recipesuggestions
-	# @recipe_to_delete = Recipe.find(params[:recipe_to_delete_id])
-	# @recipe_to_delete.delete
-	# redirect('/recipesuggestions')
-#end
+get '/about' do
+	erb :about
+end
 
 
-# post '/products/my_swap/edit' do
-#   Recipe.update(
-#     params[:my_swap_id_edit],
-#     product_name: params[:product_name],
-#     description: params[:description],
-#     image: params[:product_image],
-#     price: params[:price],
-#     seller: @current_user.user_name,
-#     quantity: params[:product_quantity],
-#     user_id: @current_user.id
-#   )
-# end
 
 
 

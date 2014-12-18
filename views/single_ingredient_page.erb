@@ -7,14 +7,12 @@
 
 	</tr>
 
-	<%# @recipes.each do |recipe| %>
 		<tr>
 			<td><%= @recipe.title %></td>
 			<td><%= @recipe.ingredients %></td>
 			<td><%= @recipe.recipe %></td>
 		
 		</tr>
-	<%# end %>
 </table>
 
  <a href='/delete/<%=@recipe.id%>'>Delete this Recipe</a> 
