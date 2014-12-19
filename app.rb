@@ -54,12 +54,13 @@ end
 get '/recipesuggestions' do
 	params.inspect
 	@recipes = Recipe.where(:main_ingredient => params[:main_ingredient], :time_to_cook => params[:time_to_cook])
-	# return @recipes.inspect
+	@recipes ||= []
+
 	erb :recipesuggestions
 	
  end
 
- get '/:id/tasks' do
+ get '/:id/recipe' do
  	@recipe = Recipe.find(params[:id])
  	erb :single_ingredient_page
  end
@@ -80,14 +81,35 @@ post '/make_a_post' do
 	erb :main_page
 end
 
+#UPDATING RECIPES
+post '/make_an_edit/:recipeid' do 
+
+	@update_recipe_title = params[:title]
+	@update_recipe_main_ingredient = params[:main_ingredient]
+	@update_recipe_time = params[:time_to_cook]
+	@update_recipe_ingredients = params[:ingredients]
+	@update_recipe_description= params[:recipe]
+
+	recipe = Recipe.find(params[:recipeid])
+
+	recipe.update(title: @update_recipe_title, time_to_cook: @update_recipe_time, main_ingredient: @update_recipe_main_ingredient, ingredients: @update_recipe_ingredients, recipe: @update_recipe_description)
+
+	redirect '/main_page'
+
+end
+
+get '/make_an_edit/:recipeid' do
+  @update_recipe = Recipe.find(params[:recipeid])
+  erb :recipe_edit
+end
+
 ##DELETING RECIPES##
 get "/delete/:recipeid" do
 	@recipe_to_delete = Recipe.find(params[:recipeid])
-	#erb :delete
+	
 	@recipe_to_delete.delete
 	redirect('/main_page')
-	#erb :recipesuggestions
-##figure out how to reroute to the "recipe suggestions" page after you delete a recipe
+
 end
 
 get '/about' do

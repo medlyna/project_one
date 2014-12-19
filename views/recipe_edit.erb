@@ -1,0 +1,37 @@
+
+<h1><%= @update_recipe.title %></h1>
+
+<p>
+<form action="/make_an_edit/<%=@update_recipe.id%>" method="post">
+</p>
+
+<p>
+<h4>Recipe Title</h4>
+<input type="text" value="<%=@update_recipe.title%>" name="title">
+</p>
+
+<p>
+<h4>Main Ingredient</h4>
+<input type="text" value="<%=@update_recipe.main_ingredient%>" name="main_ingredient">
+</p>
+
+<p>
+<h4>Time to Cook</h4>
+<input type="text" value="<%=@update_recipe.time_to_cook%>" name="time_to_cook">
+</p>
+
+<p>
+<h4>Ingredient List</h4>
+<textarea name="ingredients" rows=6 cols=60><%=@update_recipe.ingredients%>
+</textarea>
+</p>
+
+<p>
+<h4>Recipe Directions</h4>
+<textarea name="recipe_to_edit" rows=6 cols=60><%=@update_recipe.recipe%>
+</textarea>
+</p>
+
+<p>
+<input type="submit">
+</p>

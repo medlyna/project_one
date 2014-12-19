@@ -1,18 +1,18 @@
+
+<h1> <%=@recipe.title%> </h1>
 <table>
 	<tr>
-		<th>Title</th>
 		<th>Ingredients</th>
 		<th>Recipe</th>
-
-
 	</tr>
 
 		<tr>
-			<td><%= @recipe.title %></td>
 			<td><%= @recipe.ingredients %></td>
 			<td><%= @recipe.recipe %></td>
-		
 		</tr>
 </table>
 
- <a href='/delete/<%=@recipe.id%>'>Delete this Recipe</a> 
+<p>
+<a href='/make_an_edit/<%=@recipe.id%>'>Make an Edit</a> |
+<a href='/delete/<%=@recipe.id%>'>Delete this Recipe</a>
+</p> 

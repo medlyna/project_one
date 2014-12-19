@@ -2,33 +2,33 @@
 <h1> Recipe Matcher </h1>
 
 <% @username = current_user.email.split ('@') %>
-<p>Welcome back, <%= @username.first.capitalize%>!</p>
+<h2>Welcome back, <%= @username.first.capitalize%>!</h2>
 
 <p>Let's start cooking!</p>
 
 <p>What ingredient are you starting with?</p>
 <form action='/recipesuggestions' method="get">
-	<legend>Main Ingredient</legend>
-	 <select name="main_ingredient" placeholder="select">
-	     <option value = "Chicken">Chicken</option>
-	     <option value = "Seafood">Seafood</option>
-	     <option value = "Beef">Beef</option>
-	     <option value = "Pasta">Pasta</option>
-	     <option value = "Pork">Pork</option>
-	     <option value = "Vegetarian">Vegetarian</option>
-	  </select>
+
+<select name="main_ingredient" placeholder="select">
+	<option value = "Chicken">Chicken</option>
+	<option value = "Seafood">Seafood</option>
+	<option value = "Beef">Beef</option>
+	<option value = "Pasta">Pasta</option>
+	<option value = "Pork">Pork</option>
+	<option value = "Vegetarian">Vegetarian</option>
+</select>
 	
+<p>How much time do you have to cook?</p>
+	
+<select name="time_to_cook" placeholder="time_to_cook">
+	<option value = "20 minutes">20 Minutes</option>
+	<option value = "30 minutes">30 Minutes</option>
+	<option value = "40 minutes">40 Minutes</option>
+</select>
 
-	<p>How much time do you have to cook?</p>
-	<legend>Time to Cook</legend>
-	<select name="time_to_cook" placeholder="time_to_cook">
-	     <option value = "20 minutes">20 Minutes</option>
-	     <option value = "30 minutes">30 Minutes</option>
-	     <option value = "40 minutes">40 Minutes</option>
-	</select>
-
-	<input type="submit">
-
+<p>
+<input type="submit">
+</p>
 </form>
 
-<a href='/make_a_post'>Make a Recipe</a>
+

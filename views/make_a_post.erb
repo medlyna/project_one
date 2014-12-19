@@ -1,16 +1,38 @@
+<% @username = current_user.email.split ('@') %>
+<h1>Enter Your Recipe, <%= @username.first.capitalize%>! </h1>
 
-<p>Enter Your Recipe</p>
-
+<p>
 <form action="/make_a_post" method="post">
+</p>
+
+<p>
+<h4>Recipe Title</h4>
 <input type="text" placeholder="Enter Recipe Title" name="title">
+</p>
+
+<p>
+<h4>Main Ingredient</h4>
 <input type="text" placeholder="Enter Main Ingredient" name="main_ingredient">
+</p>
+
+<p>
+<h4>Time to Cook</h4>
 <input type="text" placeholder="Enter Time to Cook" name="time_to_cook">
+</p>
+
+<p>
+<h4>Ingredient List</h4>
 <TEXTAREA NAME="ingredients" ROWS=6 COLS=40 placeholder="Enter Ingredient List">
 </TEXTAREA>
+</p>
 
-
+<p>
+<h4>Recipe Directions</h4>
 <TEXTAREA NAME="recipe" ROWS=6 COLS=40 placeholder="Enter Recipe">
 </TEXTAREA>
+</p>
+
+
 <input type="submit">
 
 
